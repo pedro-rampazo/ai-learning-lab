@@ -1,10 +1,12 @@
 from openai import OpenAI
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 client_openai = OpenAI(
-    # base_url="http://127.0.0.1:1234/v1",
-    base_url="http://localhost:1234/v1",
-    api_key="lm-studio",
-    timeout=600.0,  # local LLM pode demorar (carregamento + geração)
+    base_url=os.getenv("LLM_PORT"),
+    api_key="lm-studio"
 )
 
 llm_reponse = client_openai.chat.completions.create(
